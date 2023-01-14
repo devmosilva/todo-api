@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  database:
+    build: 
+      context: .
+      dockerfile: ./docker/database/Dockerfile
+    ports: 
+      - "5440:5432"
+    container_name: 'postgres-database-vr'
+    env_file:
+      - ./.env
+    expose:
+      - "5440"
+    environment:
+      - POSTGRES_DB=bd_todo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    volumes: 
+      - ./docker/database/data:/var/lib/postgresql/data
