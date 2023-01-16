@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/testeapi', 'TodoController@teste');
+    Route::group([
+        'prefix' => '/todo',
+        'as' => 'todo.',
+    ], function () {
+        Route::post('/create', 'TodoController@create');
+        Route::get('/index', 'TodoController@index');
+        Route::put('/update/{id}', 'TodoController@update');
+        Route::delete('/delete/{id}', 'TodoController@delete');
+        Route::put('/updateStatus/{id}', 'TodoController@updateStatus');
+    });
 
